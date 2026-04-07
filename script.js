@@ -1,25 +1,29 @@
+// Function to calculate total price
 function calculateTotal() {
-    // Select all price elements
-    let priceElements = document.querySelectorAll(".prices");
+    // Get all elements with class "prices"
+    let prices = document.querySelectorAll(".prices");
     
     let total = 0;
 
-    // Loop through prices and sum them
-    priceElements.forEach(function(item) {
-        total += parseFloat(item.textContent);
-    });
+    // Loop through each price and add to total
+    for (let i = 0; i < prices.length; i++) {
+        total += parseFloat(prices[i].innerText);
+    }
 
-    // Create a new row
+    // Create a new row and cell
     let table = document.querySelector("table");
-    let newRow = document.createElement("tr");
-    let newCell = document.createElement("td");
+    let row = document.createElement("tr");
+    let cell = document.createElement("td");
 
-    // Set colspan so it spans across table columns (adjust if needed)
-    newCell.colSpan = 2;
-    newCell.textContent = "Total Price: " + total;
+    // Make the cell span across columns (adjust if needed)
+    cell.colSpan = 2;
 
-    newRow.appendChild(newCell);
-    table.appendChild(newRow);
+    // Set total text
+    cell.innerText = "Total Price: " + total;
+
+    // Append cell to row and row to table
+    row.appendChild(cell);
+    table.appendChild(row);
 }
 
 // Call the function
